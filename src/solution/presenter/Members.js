@@ -70,10 +70,10 @@ function Members({ list }) {
 			if (!effects[effect]) {
 				effects[effect] = {
 					effect,
-					isEffectExcute: false,
-					prevDeps: undefined,
-					newDeps: undefined,
-					cleanup: undefined
+					isEffectExcute: false, // 최초 실행 여부.
+					prevDeps: undefined, // 이전 의존성 데이터.
+					newDeps: undefined, // 새로운 의존성 데이터
+					cleanup: undefined, // cleanup을 실행할 함수
 				};
 			}
 			effects[effect].newDeps = cloneObject(deps);

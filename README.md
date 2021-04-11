@@ -30,11 +30,15 @@ Run `npm run dev`
 
 
 ## 문제
-- q1. state 변경 함수(updateState)를 완성하시오.
+- q1. effect를 실행함수와 의존성 데이터를 저장하는 useEffect 함수를 작성하시오.
 
-- q2. useState 함수를 [value, function]을 반환하도록 완성하시오.
+- q2. 의존성 데이터 여부에 따라 effect를 실행하는 함수를 작성하시오.
+  case 1) 의존성 데이터가 undefined일 경우에는 effect를 매번 실행
+  case 2) 의존성 데이터가 있을 경우에는 데이터 변경 여부를 체크하여 effect를 실행
 
-- q3. 데이터 변경을 위한 함수를 완성하시오.
+- q3. effect 함수가 반환함수가 있다면 (cleanup) effect 실행전에 실행하도록 작성하시오.
+
+- q4. effect 함수에는 document의 title에 데이터의 갯수를 표현하여 변경을 확인할 수 있도록 작성하시오.
 
 
 ## 주요 학습 키워드
