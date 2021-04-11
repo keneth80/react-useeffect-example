@@ -1,6 +1,6 @@
 import './style.css';
 
-import Members from './solution/presenter/Members';
+import Members from './question/Members';
 
 const excute = () => {
     const targetEl = document.querySelector('#result');

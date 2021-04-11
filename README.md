@@ -34,7 +34,8 @@ Run `npm run dev`
 
 - q2. 의존성 데이터 여부에 따라 effect를 실행하는 함수를 작성하시오.
   case 1) 의존성 데이터가 undefined일 경우에는 effect를 매번 실행
-  case 2) 의존성 데이터가 있을 경우에는 데이터 변경 여부를 체크하여 effect를 실행
+  case 2) 의존성 데이터가 있을 경우에는 데이터 변경 여부를 체크하여 effect를 실행 
+  (참고: object-hash라이브러리를 통해서 변경여부를 쉽게 파악할 수 있음)
 
 - q3. effect 함수가 반환함수가 있다면 (cleanup) effect 실행전에 실행하도록 작성하시오.
 
