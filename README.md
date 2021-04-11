@@ -15,8 +15,6 @@ Q. react의 useEffect함수를 이해하기 위해 구현을 해보자.
 
 
 4. effect 함수를 통해 document의 title을 변경한다.
-![요구사항](./src/solution/presenter/assets/react-usestate-example.png)
-
 
 
 ## 기능 작동 이미지
