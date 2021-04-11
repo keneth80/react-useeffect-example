@@ -18,7 +18,7 @@ Q. react의 useEffect함수를 이해하기 위해 구현을 해보자.
 
 
 ## 기능 작동 이미지
-![example_image](./src/solution/presenter/assets/example.png)
+![example_image](./src/solution/presenter/assets/examples.png)
 
 
 ## 실행 방법 / 문제 풀이 방법
