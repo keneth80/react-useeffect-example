@@ -1,9 +1,12 @@
 import './style.css';
 
-import { DocumentSelectionExample } from './component/document-selection-example';
+import Members from './solution/presenter/Members';
 
 const excute = () => {
-    const documentSelectionExample = new DocumentSelectionExample();
+    const targetEl = document.querySelector('#result');
+
+    const member = new Members({ list: [] });
+    targetEl.appendChild(member);
 };
 
 excute();

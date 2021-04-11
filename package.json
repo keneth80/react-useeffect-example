@@ -30,6 +30,7 @@
         "webpack-merge": "~4.2"
     },
     "dependencies": {
-        "d3": "^5.9.2"
+        "object-hash": "^2.1.1",
+        "virtual-dom": "^2.1.1"
     }
 }
