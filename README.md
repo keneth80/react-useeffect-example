@@ -42,4 +42,4 @@ Run `npm run dev`
 
 
 ## 주요 학습 키워드
-- useState 함수의 동작원리를 알아보자
+- useEffect 함수의 동작원리를 알아보자
