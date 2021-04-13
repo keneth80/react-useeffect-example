@@ -70,10 +70,9 @@ function Members({ list }) {
 			if (!effects[effect]) {
 				effects[effect] = {
 					effect,
-					isEffectExcute: false, // 최초 실행 여부.
 					prevDeps: undefined, // 이전 의존성 데이터.
-					newDeps: undefined, // 새로운 의존성 데이터
-					cleanup: undefined, // cleanup을 실행할 함수
+					newDeps: undefined, // 새로운 의존성 데이터.
+					cleanup: undefined, // cleanup을 실행할 함수.
 				};
 			}
 			effects[effect].newDeps = cloneObject(deps);
@@ -136,6 +135,11 @@ function Members({ list }) {
 				executeEffect(effects[effect]);
 			}
 		});
+		htmlNode.addEventListener ('DOMNodeRemovedFromDocument', (event) => {
+			for (const effect in effects) {
+				effects[effect].cleanup();
+			}
+		}, false);
 	}
 
 	function executeEffect(effect) {
@@ -143,25 +147,24 @@ function Members({ list }) {
 		if (effect.cleanup) {
 			effect.cleanup();
 		}
-		const deps = effect.newDeps;
+		
 		// 최초 실행.
-		if (!deps) {
+		if (!effect.newDeps) {
 			// deps가 undefinde 일 경우 effect를 항상 실행.
 			const cleanup = effect.effect();
 			effect.cleanup = cleanup;
 		} else {
 			// 최초 effect 실행
-			if (!effect.isEffectExcute) {
+			if (!effect.prevDeps) {
 				const cleanup = effect.effect();
-				effect.isEffectExcute = true;
 				effect.cleanup = cleanup;
 				effect.prevDeps = deps;
 				return;
 			}
 			// deps가 빈 배열이라면 최초한번만 실행이 된다. why? 체크해야할 의존성 데이터가 없기 때문에
 			// 자세한 내용은 https://rinae.dev/posts/a-complete-guide-to-useeffect-ko 참조
-			for (let index = 0; index < deps.length; index++) {
-				const arg = deps[index];
+			for (let index = 0; index < effect.newDeps.length; index++) {
+				const arg = effect.newDeps[index];
 				// object값의 변경을 체크하기 위해 hash 라이브러리를 써서 체크하도록 하였음.
 				if (hash(arg) !== hash(effect.prevDeps[index])) {
 					// 변경에 대한 상태를 업데이트 한다.
