@@ -99,7 +99,9 @@ function Members({ list }) {
 			return () => {
 				document.title = 'React의 useEffect 따라해보기.';
 			}
-		}, [members]);
+		}, [members.length]);
+		// TIP: 만약 object값의 변경을 체크하려면 object hash 라이브러리를 써서 체크하도록 한다.
+		// [hash(members)]
 
 		const onKeyUp = (event) => {
 			if (window.event.keyCode === 13) {
@@ -135,6 +137,7 @@ function Members({ list }) {
 				executeEffect(effects[effect]);
 			}
 		});
+		// element가 삭제되면 cleanup을 실행한다.
 		htmlNode.addEventListener ('DOMNodeRemovedFromDocument', (event) => {
 			for (const effect in effects) {
 				effects[effect].cleanup();
@@ -165,8 +168,8 @@ function Members({ list }) {
 			// 자세한 내용은 https://rinae.dev/posts/a-complete-guide-to-useeffect-ko 참조
 			for (let index = 0; index < effect.newDeps.length; index++) {
 				const arg = effect.newDeps[index];
-				// object값의 변경을 체크하기 위해 hash 라이브러리를 써서 체크하도록 하였음.
-				if (hash(arg) !== hash(effect.prevDeps[index])) {
+				// 값의 변경이 있는지 체크한다.
+				if (arg !== effect.prevDeps[index]) {
 					// 변경에 대한 상태를 업데이트 한다.
 					effect.prevDeps[index] = cloneObject(arg);
 					const cleanup = effect.effect();
