@@ -83,7 +83,7 @@ function Members({ list }) {
 		const [members, setMembers] = useState(list);
 
 		useEffect(() => {
-			// q4. effect 함수에는 document의 title에 데이터의 갯수를 표현하여 변경을 확인할 수 있도록 작성하시오.
+			// q2. effect 함수에는 document의 title에 데이터의 갯수를 표현하여 변경을 확인할 수 있도록 작성하시오.
 			// TODO: Write JS code here!'
 		});
 
@@ -124,10 +124,10 @@ function Members({ list }) {
 	}
 
 	function executeEffect(effect) {
-		// q3. effect 함수가 반환함수가 있다면 (cleanup) effect 실행전에 실행하도록 작성하시오.
+		// q4. effect 함수가 반환함수가 있다면 (cleanup) effect 실행전에 실행하도록 작성하시오.
 		// TODO: Write JS code here!'
 
-		// q2. 의존성 데이터 여부에 따라 effect를 실행하는 함수를 작성하시오.
+		// q3. 의존성 데이터 여부에 따라 effect를 실행하는 함수를 작성하시오.
 		// TODO: Write JS code here!'
 		// case 1) 의존성 데이터가 undefined일 경우에는 effect를 매번 실행
 		// case 2) 의존성 데이터가 있을 경우에는 데이터 변경 여부를 체크하여 effect를 실행 
