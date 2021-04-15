@@ -148,7 +148,6 @@ function Members({ list }) {
 		if (effect.cleanup) {
 			effect.cleanup();
 		}
-		
 		// 최초 실행.
 		if (!effect.newDeps) {
 			// deps가 undefinde 일 경우 effect를 항상 실행.
@@ -159,17 +158,16 @@ function Members({ list }) {
 			if (!effect.prevDeps) {
 				const cleanup = effect.effect();
 				effect.cleanup = cleanup;
-				effect.prevDeps = deps;
+				effect.prevDeps = effect.newDeps;
 				return;
 			}
 			// deps가 빈 배열이라면 최초한번만 실행이 된다. why? 체크해야할 의존성 데이터가 없기 때문에
 			// 자세한 내용은 https://rinae.dev/posts/a-complete-guide-to-useeffect-ko 참조
 			for (let index = 0; index < effect.newDeps.length; index++) {
 				const arg = effect.newDeps[index];
-				// object값의 변경을 체크하기 위해 hash 라이브러리를 써서 체크하도록 하였음.
-				if (hash(arg) !== hash(effect.prevDeps[index])) {
+				if (arg !== effect.prevDeps[index]) {
 					// 변경에 대한 상태를 업데이트 한다.
-					effect.prevDeps[index] = cloneObject(arg);
+					effect.prevDeps[index] = arg;
 					const cleanup = effect.effect();
 					effect.cleanup = cleanup;
 					break;
