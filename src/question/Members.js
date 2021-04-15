@@ -121,6 +121,12 @@ function Members({ list }) {
 				executeEffect(effects[effect]);
 			}
 		});
+		// element가 삭제되면 cleanup을 실행한다.
+		htmlNode.addEventListener ('DOMNodeRemovedFromDocument', (event) => {
+			for (const effect in effects) {
+				effects[effect].cleanup();
+			}
+		}, false);
 	}
 
 	function executeEffect(effect) {
