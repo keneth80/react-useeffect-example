@@ -1,7 +1,4 @@
 import { h, create, diff, patch } from 'virtual-dom';
-import hash from 'object-hash';
-
-import { cloneObject } from './util';
 
 /**
 * @name 생성자 함수
@@ -19,7 +16,7 @@ function Members({ list }) {
 	let currentState = 0;
 	// effect hook이 등록될때마다 effect가 저장되는 변수.
 	const effects = [];
-	// effect 실행 index
+	// 현재 effect index
 	let currentEffect = 0;
 
 	/**
@@ -88,7 +85,7 @@ function Members({ list }) {
 		}
 		effects[currentEffect].newDeps = deps;
 		effects[currentEffect].effect = effect;
-		// 다음 hook을 위해
+		// 다음 hook을 위해 증가.
 		currentEffect++;
 	};
 
@@ -137,15 +134,13 @@ function Members({ list }) {
 			return () => {
 				document.title = 'React의 useEffect 따라해보기.';
 			}
-		}, [members]);
-		// (참고: object-hash라이브러리를 통해서 매번 새로 생성되는 object 값의 변경여부를 쉽게 파악할 수 있음)
+		}, [members.length]);
 
 		const onKeyUp = (event) => {
 			if (window.event.keyCode === 13) {
 				members.push(event.target.value);
 				event.target.value = '';
-				// 새로운 데이터로 넣어줌.
-				setMembers(cloneObject(members));
+				setMembers(members);
 			}
 		};
 
@@ -153,8 +148,7 @@ function Members({ list }) {
 			const inputElement = htmlNode.querySelector('#memberInput');
 			members.push(inputElement.value);
 			inputElement.value = '';
-			// 새로운 데이터로 넣어줌.
-			setMembers(cloneObject(members));
+			setMembers(members);
 		}
 
 		return h('div', { style: 'width: 100%; margin-top: 10px' }, [

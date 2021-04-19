@@ -1,7 +1,4 @@
 import { h, create, diff, patch } from 'virtual-dom';
-import hash from 'object-hash';
-
-import { cloneObject } from './util';
 
 /**
 * @name 생성자 함수
@@ -19,7 +16,7 @@ function Members({ list }) {
 	let currentState = 0;
 	// effect hook이 등록될때마다 effect가 저장되는 변수.
 	const effects = [];
-	// effect 실행 index
+	// 현재 effect index
 	let currentEffect = 0;
 
 	/**
@@ -105,15 +102,13 @@ function Members({ list }) {
 		useEffect(() => {
 			// q4. effect 함수에는 document의 title에 데이터의 갯수를 표현하여 변경을 확인할 수 있도록 작성하시오.
 			// TODO: Write JS code here!'
-		}, [members]);
-		// (참고: object-hash라이브러리를 통해서 매번 새로 생성되는 object 값의 변경여부를 쉽게 파악할 수 있음)
+		}, [members.length]);
 
 		const onKeyUp = (event) => {
 			if (window.event.keyCode === 13) {
 				members.push(event.target.value);
 				event.target.value = '';
-				// 새로운 데이터로 넣어줌.
-				setMembers(cloneObject(members));
+				setMembers(members);
 			}
 		};
 
@@ -121,8 +116,7 @@ function Members({ list }) {
 			const inputElement = htmlNode.querySelector('#memberInput');
 			members.push(inputElement.value);
 			inputElement.value = '';
-			// 새로운 데이터로 넣어줌.
-			setMembers(cloneObject(members));
+			setMembers(members);
 		}
 
 		return h('div', { style: 'width: 100%; margin-top: 10px' }, [
