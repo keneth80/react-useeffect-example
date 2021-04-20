@@ -110,7 +110,7 @@ function Members({ list }) {
 				effect.prevDeps = effect.newDeps;
 				return;
 			}
-			const isChangedDeps = !effect.newDeps.every((el, i) => el === effect.prevDeps[i]);
+			const isChangedDeps = !effect.newDeps.every((deps, i) => deps === effect.prevDeps[i]);
 			// deps가 빈 배열이라면 최초한번만 실행이 된다. why? 체크해야할 의존성 데이터가 없기 때문에
 			if (isChangedDeps) {
 				effect.prevDeps = effect.newDeps;
